@@ -1,0 +1,7 @@
+C:\Users\jaime\Desktop\POO\Empresa-Lab-6\bin\Debug\Empresa-Lab-6.exe.config
+C:\Users\jaime\Desktop\POO\Empresa-Lab-6\bin\Debug\Empresa-Lab-6.exe
+C:\Users\jaime\Desktop\POO\Empresa-Lab-6\bin\Debug\Empresa-Lab-6.pdb
+C:\Users\jaime\Desktop\POO\Empresa-Lab-6\obj\Debug\Empresa-Lab-6.csprojAssemblyReference.cache
+C:\Users\jaime\Desktop\POO\Empresa-Lab-6\obj\Debug\Empresa-Lab-6.csproj.CoreCompileInputs.cache
+C:\Users\jaime\Desktop\POO\Empresa-Lab-6\obj\Debug\Empresa-Lab-6.exe
+C:\Users\jaime\Desktop\POO\Empresa-Lab-6\obj\Debug\Empresa-Lab-6.pdb
