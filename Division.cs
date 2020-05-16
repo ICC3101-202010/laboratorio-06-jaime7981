@@ -22,5 +22,10 @@ namespace Empresa_Lab_6
             this.name = name;
             this.manager = manager;
         }
+
+        public string GetName()
+        {
+            return name;
+        }
     }
 }

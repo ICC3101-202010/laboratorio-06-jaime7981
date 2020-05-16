@@ -22,9 +22,10 @@ namespace Empresa_Lab_6
         public void ShowDivision()
         {
             int counter = 1;
-            foreach (Division div in division)
+            foreach (Division value in this.division)
             {
-                Console.WriteLine(counter + ".- ");
+                Console.WriteLine(counter + ".- " );
+                counter ++;
             }
             Console.ReadKey();
             Console.Clear();
@@ -38,23 +39,23 @@ namespace Empresa_Lab_6
                 {
                 case "A":
                     selectedOption = Input("Area name");
-                    Area area = new Area(selectedOption);
-                    division.Add(area);
+                    //Area area = new Area(selectedOption);
+                    //division.Add(area);
                     break;
                 case "D":
                     selectedOption = Input("Department name");
-                    Department department = new Department(selectedOption);
-                    division.Add(department);
+                    //Department department = new Department(selectedOption);
+                    //division.Add(department);
                     break;
                 case "S":
                     selectedOption = Input("Section name");
-                    Secction secction = new Secction(selectedOption);
-                    division.Add(secction);
+                    //Secction secction = new Secction(selectedOption);
+                    //division.Add(secction);
                     break;
                 case "B":
                     selectedOption = Input("Block name");
-                    Block block = new Block(selectedOption);
-                    division.Add(block);
+                    //Block block = new Block(selectedOption);
+                    //division.Add(block);
                     break;
             }
             Console.Clear();

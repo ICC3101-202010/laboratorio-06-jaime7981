@@ -12,25 +12,19 @@ namespace Empresa_Lab_6
     {
         static void Main(string[] args)
         {
-            while (true)
+            bool main = true;
+            List<Empresa> empresas = new List<Empresa>();
+            empresas = LoadData();
+
+            while (main)
             {
-                StartMenu();
+                main = StartMenu(empresas);
             }
         }
 
-        static void StartMenu()
+        static bool StartMenu(List<Empresa> empresas)
         {
-            List<Empresa> empresas = new List<Empresa>();
             bool flag = true;
-
-            try
-            {
-                empresas = LoadData();
-            }
-            catch
-            {
-                Console.WriteLine("No such file in directory");
-            }
 
             while (flag)
             {
@@ -45,10 +39,9 @@ namespace Empresa_Lab_6
                     case "S":
                         {
                             Console.WriteLine("Cargar Archivo \n");
-                            
+
                             string op1 = AskData(" Nombre de empresa");
                             string op2 = AskData(" Rut de empresa");
-
                             foreach (Empresa emp in empresas)
                             {
                                 if (emp.GetName() == op1 && emp.GetRut() == op2)
@@ -58,6 +51,7 @@ namespace Empresa_Lab_6
                                     flag = false;
                                 }
                             }
+
                             if (flag == true)
                             {
                                 Console.WriteLine("Archivo empresa no encontrado");
@@ -76,7 +70,8 @@ namespace Empresa_Lab_6
                                     flag = false;
                                 }
                             }
-                        break;
+
+                            break;
                         }
 
                     case "N":
@@ -101,8 +96,13 @@ namespace Empresa_Lab_6
                             SaveData(new List<Empresa>());
                             break;
                         }
+                    case "Q":
+                        {
+                            return false;
+                        }
                 }
             }
+            return true;
         }
 
         static void MainMenu(Empresa empresa)
@@ -139,18 +139,35 @@ namespace Empresa_Lab_6
 
         static void SaveData(List<Empresa> empresas)
         {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            FileStream FS = new FileStream("Empresas.bin", FileMode.Create, FileAccess.Write, FileShare.None);
-            binaryFormatter.Serialize(FS, empresas);
-            FS.Close();
+            try
+            {
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                FileStream FS = new FileStream("Empresas.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+                binaryFormatter.Serialize(FS, empresas);
+                FS.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while saving");
+                Console.WriteLine(ex);
+            }
         }
         static List<Empresa> LoadData()
         {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            FileStream FS = new FileStream("Empresas.bin", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            List<Empresa> empresas = (List<Empresa>)binaryFormatter.Deserialize(FS);
-            FS.Close();
-            return empresas;
+            try
+            {
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                FileStream FS = new FileStream("Empresas.bin", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                List<Empresa> empresas = (List<Empresa>)binaryFormatter.Deserialize(FS);
+                FS.Close();
+                return empresas;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while loading");
+                Console.WriteLine(ex);
+                return null;
+            }
         }
 
         static void PrintString(string sentence)
