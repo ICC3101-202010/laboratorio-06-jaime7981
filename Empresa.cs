@@ -21,44 +21,76 @@ namespace Empresa_Lab_6
 
         public void ShowDivision()
         {
+            ConsoleKeyInfo selectedOption;
+
             int counter = 1;
             foreach (Division value in this.division)
             {
-                Console.WriteLine(counter + ".- " );
-                counter ++;
+                Console.WriteLine(counter + ".- " + value.GetName());
+                counter++;
             }
+
+            selectedOption = Console.ReadKey();
+            Console.Clear();
+
+            String option = selectedOption.Key.ToString();
+            String[] spearator = { "D" };
+            String[] optionlist = option.Split(spearator, StringSplitOptions.RemoveEmptyEntries);
+            bool isNumeric = int.TryParse(optionlist[0], out _);
+
+            if (isNumeric == true && Int32.Parse(optionlist[0]) - 1 < counter)
+            {
+                foreach (Division div in division)
+                {
+                    try
+                    {
+                        if (div == division[Int32.Parse(optionlist[0]) - 1])
+                        {
+                            div.DivisionsMenu();
+                        }
+                    }
+                    catch { }
+                }
+            }
+        }
+
+        public void AddDivision()
+        {
+            string op1 = Input("Escoger nombre de la division");
+            string op2 = Input("Agregar nombre del manager");
+            division.Add(new Division(op1, op2));
+            Console.WriteLine("Division creada");
             Console.ReadKey();
             Console.Clear();
         }
 
-        public void CreateDivision()
+        public void RemoveDivision()
         {
-            string selectedOption;
-            string[] options = { "Area (a)", "Department (d)", "Secction (s)", "Block (b)" };
-            switch (SelectOption(" Create Division \n", options))
-                {
-                case "A":
-                    selectedOption = Input("Area name");
-                    //Area area = new Area(selectedOption);
-                    //division.Add(area);
-                    break;
-                case "D":
-                    selectedOption = Input("Department name");
-                    //Department department = new Department(selectedOption);
-                    //division.Add(department);
-                    break;
-                case "S":
-                    selectedOption = Input("Section name");
-                    //Secction secction = new Secction(selectedOption);
-                    //division.Add(secction);
-                    break;
-                case "B":
-                    selectedOption = Input("Block name");
-                    //Block block = new Block(selectedOption);
-                    //division.Add(block);
-                    break;
+            int counter = 1;
+            foreach(Division div in division)
+            {
+                Console.WriteLine(counter + ".- " + div.GetName());
+                counter++;
             }
+            Console.WriteLine("Select the division you want to Remove");
+
+            ConsoleKeyInfo selectedOption;
+            selectedOption = Console.ReadKey();
             Console.Clear();
+
+            String option = selectedOption.Key.ToString();
+            String[] spearator = { "D" };
+            String[] optionlist = option.Split(spearator, StringSplitOptions.RemoveEmptyEntries);
+            bool isNumeric = int.TryParse(optionlist[0], out _);
+
+            if (isNumeric == true && Int32.Parse(optionlist[0]) - 1 < counter)
+            {
+                try
+                {
+                    division.RemoveAt(Int32.Parse(optionlist[0]) - 1);
+                }
+                catch { }
+            }
         }
 
         public void ShowOptions(string[] options)

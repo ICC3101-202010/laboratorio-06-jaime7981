@@ -9,7 +9,7 @@ namespace Empresa_Lab_6
     [Serializable()]
     class Area : Division
     {
-        string division;
+        protected string division;
         string name;
 
         public Area(string name)
@@ -18,7 +18,7 @@ namespace Empresa_Lab_6
             this.division = "Area";
         }
 
-        public string GetName()
+        public new string GetName()
         {
             return name;
         }

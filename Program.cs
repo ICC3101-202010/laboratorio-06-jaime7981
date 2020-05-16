@@ -30,7 +30,8 @@ namespace Empresa_Lab_6
             {
                 ConsoleKeyInfo selectedOption;
                 Console.WriteLine("Menu de inicio");
-                Console.WriteLine("Cargar Archivo (s/n)  /  Limpiar Datos (Opcion Oculta)");
+                Console.WriteLine("Cargar Archivo (s/n)  /  Limpiar Datos (Opcion Oculta)  /  Exit (q)");
+                SaveData(empresas);
                 selectedOption = Console.ReadKey();
                 Console.Clear();
 
@@ -70,7 +71,6 @@ namespace Empresa_Lab_6
                                     flag = false;
                                 }
                             }
-
                             break;
                         }
 
@@ -126,9 +126,12 @@ namespace Empresa_Lab_6
                         empresa.ShowDivision();
                         break;
                     case "D2":
-                        empresa.CreateDivision();
+                        empresa.AddDivision();
                         break;
                     case "D3":
+                        
+                        Console.WriteLine("Ingresar nombre de la division que se quiere borrar");
+                        empresa.RemoveDivision();
                         break;
                     case "D4":
                         flag = false;
